@@ -1,4 +1,13 @@
+# -*- coding: utf-8 -*-
 import unittest
+
+
+'''
+標準のunittestを使ってみる
+- unittest.TestCaseのサブクラスでテストを定義できる
+- テストしたい振る舞いごとにメソッドを定義できる
+- unittest.TestCaseのクラスでのテストメソッドは"test"で始まらなければならない
+'''
 
 
 def sum_of_squares_of_two_larger_numbers_from_three(a, b, c):
