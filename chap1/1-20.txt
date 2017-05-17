@@ -1,0 +1,80 @@
+#正規順序
+
+(gcd 206 40)
+(if (= 40 0) #f
+    206
+    (gcd 40 (rem 206 40))
+)
+
+(gcd 40 (rem 206 40))
+(if (= (rem 206 40) 0) #f rem:1
+    40
+    (gcd (rem 206 40) (rem 40 (rem 206 40)))
+)
+
+(gcd (rem 206 40) (rem 40 (rem 206 40)))
+(if (= (rem 40 (rem 206 40)) 0) #f rem:2
+    (rem 206 40)
+    (gcd (rem 40 (rem 206 40)) (rem (rem 206 40) (rem 40 (rem 206 40))))
+)
+
+(gcd (rem 40 (rem 206 40)) (rem (rem 206 40) (rem 40 (rem 206 40))))
+(if (= (rem (rem 206 40) (rem 40 (rem 206 40))) 0) #f rem:4
+    (rem 40 (rem 206 40)) 
+    (gcd (rem (rem 206 40) (rem 40 (rem 206 40))) (rem (rem 40 (rem 206 40)) (rem (rem 206 40) (rem 40 (rem 206 40)))) )
+)
+
+(gcd (rem (rem 206 40) (rem 40 (rem 206 40))) (rem (rem 40 (rem 206 40)) (rem (rem 206 40) (rem 40 (rem 206 40)))) )
+(if (= (rem (rem 40 (rem 206 40)) (rem (rem 206 40) (rem 40 (rem 206 40)))) 0) #t rem:7
+    (rem (rem 206 40) (rem 40 (rem 206 40))) 
+    (gcd ...)
+)
+
+(rem (rem 206 40) (rem 40 (rem 206 40))) # rem:4
+
+2 
+
+cnt_rem = 1+2+4+7+4 = 18
+
+#作用的順序
+
+(gcd 206 40)
+(if (= 40 0)
+    206
+    (gcd 40 (rem 206 40))
+)
+
+(gcd 40 (rem 206 40)) # rem:1
+(gcd 40 6)
+(if (= 6 0)
+    40
+    (gcd 6 (rem 40 6))
+)
+
+(gcd 6 (rem 40 6))
+(gcd 6 4) # rem:1
+(if (= 4 0)
+    6
+    (gcd 4 (rem 6 4))
+)
+
+(gcd 4 (rem 6 4)) # rem:1
+(gcd 4 2)
+(if (= 2 0)
+    4
+    (gcd 2 (rem 4 2))
+)
+
+(gcd 2 (rem 4 2))
+(gcd 2 0) # rem:1
+(if (= 0 0)
+    2 
+    (gcd 0 (rem 2 0))
+)
+2
+
+cnt_rem = 1+1+1+1 = 4
+
+
+
+
