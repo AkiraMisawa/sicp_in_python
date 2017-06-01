@@ -30,11 +30,8 @@ class ExponentialTest2(unittest.TestCase):
         self.assertEqual(math.pow(2, 10), fast_expt2(2, 10))
 
     def test_case2(self):
-        self.assertEqual(math.pow(3, 5), fast_expt2(3, 5))
+        self.assertEqual(math.pow(2, 5), fast_expt2(3, 5))
 
 
 if __name__ == '__main__':
-    print(fast_expt2(4, 0))
-    print(fast_expt2(2, 10))
-    print(fast_expt2(3, 5))
     unittest.main()
