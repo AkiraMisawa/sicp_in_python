@@ -1,2 +1,3 @@
 .tags*
 *.rkt
+/chap1/__pycache__/
