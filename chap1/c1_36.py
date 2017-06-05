@@ -1,4 +1,4 @@
-from math import cos
+from math import log
 
 def tolerance():
     return 0.00001
@@ -9,6 +9,7 @@ def fixed_point(f,first_guess):
 
     def try_(guess):
         next_=f(guess)
+        print(next_)
         if close_enough(guess,next_):
             return next_
         else:
@@ -17,8 +18,9 @@ def fixed_point(f,first_guess):
     return try_(first_guess)
 
 def main():
-    #print(fixed_point(cos,1.0))
-    print(fixed_point(lambda x:1+1/x,1.0))
+    fixed_point(lambda x:log(1000)/log(x),10.0) #without ave damping, 33回
+    print()
+    fixed_point(lambda x:1/2*(x+log(1000)/log(x)),10.0) #with ave damping, 10回
 
 if __name__ == '__main__':
     main()
