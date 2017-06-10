@@ -1,14 +1,13 @@
-def compose(f,g):
-    return lambda x:f(g(x))
+def compose(f, g, x):
+    return f(g(x))
 
-def square(x):
-    return x*x
 
 def inc(x):
-    return x+1
+    return x + 1
 
-def main():
-    print(compose(square,inc)(6))
 
-if __name__ == '__main__':
-    main()
+def square(x):
+    return x * x
+
+
+print("square(inc(6))=", compose(f=square, g=inc, x=6))
