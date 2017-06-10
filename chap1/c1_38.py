@@ -1,15 +1,28 @@
-import c1_37 as func
+import math
 
-def de_frac_conti(i):
+
+def n(i):
+    return 1.0
+
+
+def d(i):
     if i % 3 != 2:
-        return 1
+        return 1.0
     else:
-        return (i + 1) * 2 / 3
+        a = i // 3
+        return 2.0 * (a + 1.0)
 
-def main():
-    ni = lambda i:1
-    for r in range(1,20):
-        print(r,func.cont_frac_recur(ni,de_frac_conti,r))
 
-if __name__ == '__main__':
-    main()
+def cont_frac(n, d, k):
+    def rec(i):
+        if i > k:
+            return 0.0
+        else:
+            return n(i)/(d(i) + rec(i+1))
+    return rec(1)
+
+
+k = 100
+print("k =", k)
+print("e =", 2.0 + cont_frac(n, d, k), "...")
+print("e - e(k) =", math.e - 2.0 - cont_frac(n, d, k))
