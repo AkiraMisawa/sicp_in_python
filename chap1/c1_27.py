@@ -29,6 +29,7 @@ def main():
     carmichael_numbers = [561, 1105, 1729, 2465, 2821, 6601]
     for c in carmichael_numbers:
         carmichael_test(c)
+
     not_carmichael_number = 1110
     carmichael_test(not_carmichael_number)
 
