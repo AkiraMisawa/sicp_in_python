@@ -3,6 +3,14 @@
 For utility functions.
 """
 
+def average(x, y):
+    """
+    :type x: float
+    :type y: float
+    :rtype: float
+    """
+    return 0.5 * (x + y)
+
 
 def identity(x):
     """
