@@ -16,18 +16,24 @@ def cons(a, b):
 
 def car(x):
     """
-    :type x: FunctionType
+    :type x: FunctionType | None
     :rtype: object | FunctionType
     """
-    return x(lambda a, b: a)
+    if x is None:
+        return None
+    else:
+        return x(lambda a, b: a)
 
 
 def cdr(x):
     """
-    :type x: FunctionType
+    :type x: FunctionType | None
     :rtype: object | FunctionType
     """
-    return x(lambda a, b: b)
+    if x is None:
+        return None
+    else:
+        return x(lambda a, b: b)
 
 
 # noinspection PyShadowingBuiltins
@@ -37,7 +43,7 @@ def list(*x):
     :rtype: FunctionType
     """
     if len(x) == 0:
-        return cons(None, None)
+        return None
     elif len(x) == 1:
         return cons(x[0], None)
     else:
