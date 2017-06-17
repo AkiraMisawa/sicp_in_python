@@ -40,20 +40,79 @@ def cdr(x):
 def list(*x):
     """
     :type x:
-    :rtype: FunctionType
+    :rtype: FunctionType | None
     """
-    if len(x) == 0:
-        return None
-    elif len(x) == 1:
-        return cons(x[0], None)
-    else:
-        a = x[-2]
-        b = x[-1]
-        z = x[:-2]
-        if z:
-            return list(*z, cons(a, b))
-        else:
+    def list_iter(*y, b):
+        """
+        :type y:
+        :type b: object
+        :rtype: FunctionType | None
+        """
+        if len(y) == 0:
+            return None
+        elif len(y) == 1:
+            a = y[0]
             return cons(a, b)
+        else:
+            a = y[-1]
+            z = y[:-1]
+            return list_iter(*z, b=cons(a, b))
+
+    return list_iter(*x, b=None)
+
+
+def is_null(items):
+    """
+    :type items: FunctionType | None
+    :rtype: boll
+    """
+    return items is None
+
+
+def length(items):
+    """
+    :type items: FunctionType | None
+    :rtype: int
+    """
+    def length_iter(a, count):
+        """
+        :type a: FunctionType | None
+        :type count: int
+        :rtype: int
+        """
+        if is_null(a):
+            return count
+        else:
+            return length_iter(cdr(a), count + 1)
+
+    return length_iter(items, 0)
+
+
+def list_ref(items, n):
+    """
+    :type items: FunctionType
+    :type n: int
+    :rtype: object
+    """
+    def list_ref_iter(x, count):
+        """
+        :type x: FunctionType
+        :type count: int
+        :rtype: FunctionType | object
+        """
+        if count == 0:
+            return car(x)
+        else:
+            return list_ref_iter(cdr(x), count - 1)
+
+    if is_null(items):
+        raise ValueError('empty list')
+    items_length = length(items)
+    if n < 0:
+        n += items_length
+    if n >= items_length or n < 0:
+        raise ValueError('list index out of range')
+    return list_ref_iter(items, n)
 
 
 class UnitTestOfAboveFunctions(unittest.TestCase):
@@ -82,7 +141,21 @@ class UnitTestOfAboveFunctions(unittest.TestCase):
         x = list(a, b, c)
         self.assertEqual(a, car(x))
         self.assertEqual(b, car(cdr(x)))
-        self.assertEqual(c, cdr(cdr(x)))
+        self.assertEqual(c, car(cdr(cdr(x))))
+
+    def test_case_5(self):
+        x = list()
+        y = list(1, 2, 3)
+        self.assertEqual(0, length(x))
+        self.assertEqual(3, length(y))
+
+    def test_case_6(self):
+        a = 1
+        b = 2
+        c = 3
+        x = list(a, b, c)
+        self.assertEqual(a, list_ref(x, 0))
+        self.assertEqual(c, list_ref(x, -1))
 
 
 if __name__ == '__main__':
