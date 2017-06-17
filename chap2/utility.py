@@ -39,12 +39,12 @@ def cdr(x):
 # noinspection PyShadowingBuiltins
 def list(*x):
     """
-    :type x:
+    :type x: object
     :rtype: FunctionType | None
     """
     def list_iter(*y, b):
         """
-        :type y:
+        :type y: object
         :type b: object
         :rtype: FunctionType | None
         """
