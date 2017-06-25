@@ -30,6 +30,10 @@ def cdr(x):
     return x(lambda a, b: b)
 
 
+def print_cons(x):
+    print("(", car(x), ",", cdr(x), ")")
+
+
 # noinspection PyShadowingBuiltins
 def list(*x):
     """
