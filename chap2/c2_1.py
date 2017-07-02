@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+
+
 def gcd(a, b):
     if(b == 0):
         return a
@@ -15,10 +18,6 @@ def car(x):
 
 def cdr(x):
     return x(lambda a, b: b)
-
-
-def make_rat(n, d):
-    return cons(n, d)
 
 
 def numer(x):

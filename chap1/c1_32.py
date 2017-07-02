@@ -1,6 +1,5 @@
 # coding=utf-8
 """1.32"""
-
 from utility import cube, inc, identity
 
 
@@ -89,8 +88,7 @@ def product_iter(term, a, next_fun, b):
     :type b: int
     :rtype: float
     """
-    return accumulate_iter(lambda x, y: x * y, 1, term, a, next_fun, b)
-
+    return accumulate_iter(lambda x,y: x * y, 1, term, a,next_fun,b)
 
 def main():
     """main"""

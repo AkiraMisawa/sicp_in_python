@@ -2,23 +2,13 @@
 """for utility functions"""
 
 import unittest
-from types import FunctionType
 
 
 def cons(a, b):
-    """
-    :type a: object
-    :type b: object
-    :rtype: FunctionType
-    """
     return lambda x: x(a, b)
 
 
 def car(x):
-    """
-    :type x: FunctionType | None
-    :rtype: object | FunctionType
-    """
     if x is None:
         return None
     else:
@@ -26,10 +16,6 @@ def car(x):
 
 
 def cdr(x):
-    """
-    :type x: FunctionType | None
-    :rtype: object | FunctionType
-    """
     if x is None:
         return None
     else:
