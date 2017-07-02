@@ -101,6 +101,22 @@ def list_ref(items, n):
     return list_ref_iter(items, n)
 
 
+def make_interval(a, b):
+    return cons(a, b)
+
+
+def lower_bound(interval):
+    return car(interval)
+
+
+def upper_bound(interval):
+    return cdr(interval)
+
+
+def print_interval(interval):
+    print("[{0}, {1}]".format(lower_bound(interval), upper_bound(interval)))
+
+
 class UnitTestOfAboveFunctions(unittest.TestCase):
     def test_case_1(self):
         a = 1
