@@ -115,6 +115,18 @@ def list_ref(items, n):
     return list_ref_iter(items, n)
 
 
+def print_list(l):
+    def print_impl(l):
+        if length(l) > 0:
+            print(car(l), end=" ")
+            if length(l) > 1:
+                print_impl(cdr(l))
+
+    print('(', end=" ")
+    print_impl(l)
+    print(')')
+
+
 class UnitTestOfAboveFunctions(unittest.TestCase):
     def test_case_1(self):
         a = 1
