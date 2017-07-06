@@ -1,3 +1,4 @@
 .tags*
 *.rkt
 /chap1/__pycache__/
+/chap2/__pycache__/
