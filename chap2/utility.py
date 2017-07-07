@@ -166,7 +166,30 @@ def upper_bound(interval):
 def print_interval(interval):
     print("[{0}, {1}]".format(lower_bound(interval), upper_bound(interval)))
 
-    
+
+def list_to_str(l):
+    def one_element_to_str(l):
+        if callable(car(l)):
+            return list_to_str(car(l)) + ' '
+        else:
+            return str(car(l)) + ' '
+
+    def to_str_impl(l):
+        string = ''
+        if not is_null(l):
+            if length(l) > 0:
+                string = one_element_to_str(l)
+            if length(l) > 1:
+                string = string + to_str_impl(cdr(l))
+        return string
+
+    return '( ' + to_str_impl(l) + ')'
+
+
+def print_list(l):
+    print(list_to_str(l))
+
+
 class UnitTestOfAboveFunctions(unittest.TestCase):
     def test_case_1(self):
         a = 1
@@ -219,6 +242,21 @@ class UnitTestOfAboveFunctions(unittest.TestCase):
         x_map = map(lambda i: 2 * i, x)
         y = list(2, 4, 6)
         self.assertTrue(is_same_list(x_map, y))
+
+    def test_case_9(self):
+        a = list()
+        b = list(1)
+        c = list(1, 2)
+        d = list(3, 4)
+        e = list(1, 2, d)
+        f = list(7, e, d)
+        self.assertEqual(list_to_str(a), '( )')
+        self.assertEqual(list_to_str(b), '( 1 )')
+        self.assertEqual(list_to_str(list(b)), '( ( 1 ) )')
+        self.assertEqual(list_to_str(c), '( 1 2 )')
+        self.assertEqual(list_to_str(e), '( 1 2 ( 3 4 ) )')
+        self.assertEqual(list_to_str(f),
+                         '( 7 ( 1 2 ( 3 4 ) ) ( 3 4 ) )')
 
 
 if __name__ == '__main__':

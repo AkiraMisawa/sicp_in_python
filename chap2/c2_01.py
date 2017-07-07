@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import utility
 
 
 def gcd(a, b):
@@ -21,11 +22,11 @@ def cdr(x):
 
 
 def numer(x):
-    return car(x)
+    return utility.car(x)
 
 
 def denom(x):
-    return cdr(x)
+    return utility.cdr(x)
 
 
 def add_rat(x, y):
@@ -54,7 +55,7 @@ def make_rat(n, d):
     if d < 0:
         return make_rat(-n, -d)
     g = gcd(n, d)
-    return cons(n // g, d // g)
+    return utility.cons(n // g, d // g)
 
 
 def print_rat(x):

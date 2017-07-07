@@ -2,3 +2,4 @@
 *.rkt
 /chap1/__pycache__/
 *.pyc
+/chap2/__pycache__/
