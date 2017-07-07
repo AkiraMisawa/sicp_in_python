@@ -17,6 +17,6 @@ def main():
     print(last)
     assert 34 == last
 
-    
+
 if __name__ == '__main__':
     main()
