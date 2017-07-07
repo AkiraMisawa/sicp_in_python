@@ -20,7 +20,6 @@ def square_list_with_map(list):
 
 
 def main():
-    print("Hello")
     lst = utility.list(1, 2, 3, 4, 5)
     print(lst)
     result = square_list_with_map(lst)
