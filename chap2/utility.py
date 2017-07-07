@@ -115,6 +115,56 @@ def list_ref(items, n):
     return list_ref_iter(items, n)
 
 
+def is_same_list(list1, list2):
+    """
+    :type list1: FunctionType | None
+    :type list2: FunctionType | None
+    :rtype: bool
+    """
+    def is_same_list_iter(x, y):
+        """
+        :type x: FunctionType | None
+        :type y: FunctionType | None
+        :rtype: bool
+        """
+        if is_null(x) and is_null(y):
+            return True
+        elif car(x) != car(y):
+            return False
+        else:
+            return is_same_list_iter(cdr(x), cdr(y))
+
+    if length(list1) != length(list2):
+        return False
+    else:
+        return is_same_list_iter(list1, list2)
+
+
+def append(list1, list2):
+    """
+    :type list1: FunctionType | None
+    :type list2: FunctionType | None
+    :rtype: FunctionType | None
+    """
+    if is_null(list1):
+        return list2
+    else:
+        return cons(car(list1), append(cdr(list1), list2))
+
+
+# noinspection PyShadowingBuiltins
+def map(proc, items):
+    """
+    :type proc: FunctionType
+    :type items: FunctionType | None
+    :rtype: FunctionType | None
+    """
+    if is_null(items):
+        return
+    else:
+        return cons(proc(car(items)), map(proc, cdr(items)))
+
+
 def list_to_str(l):
     def one_element_to_str(l):
         if callable(car(l)):
@@ -179,6 +229,17 @@ class UnitTestOfAboveFunctions(unittest.TestCase):
         x = list(a, b, c)
         self.assertEqual(a, list_ref(x, 0))
         self.assertEqual(c, list_ref(x, -1))
+
+    def test_case_7(self):
+        list1 = list(1, 2, 3)
+        list2 = list(1, 2, 3)
+        self.assertTrue(is_same_list(list1, list2))
+
+    def test_case_8(self):
+        x = list(1, 2, 3)
+        x_map = map(lambda i: 2 * i, x)
+        y = list(2, 4, 6)
+        self.assertTrue(is_same_list(x_map, y))
 
     def test_case_9(self):
         a = list()
