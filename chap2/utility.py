@@ -180,7 +180,7 @@ class UnitTestOfAboveFunctions(unittest.TestCase):
         self.assertEqual(a, list_ref(x, 0))
         self.assertEqual(c, list_ref(x, -1))
 
-    def test_case_7(self):
+    def test_case_9(self):
         a = list()
         b = list(1)
         c = list(1, 2)
