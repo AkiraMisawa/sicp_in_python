@@ -116,15 +116,26 @@ def list_ref(items, n):
 
 
 def print_list(l):
-    def print_impl(l):
-        if length(l) > 0:
+    def print_one_element(l):
+        if callable(car(l)):
+            print_loop(car(l))
+        else:
             print(car(l), end=" ")
+
+    def print_impl(l):
+        if not is_null(l):
+            if length(l) > 0:
+                print_one_element(l)
             if length(l) > 1:
                 print_impl(cdr(l))
 
-    print('(', end=" ")
-    print_impl(l)
-    print(')')
+    def print_loop(l):
+        print('(', end=" ")
+        print_impl(l)
+        print(')', end=" ")
+
+    print_loop(l)
+    print()
 
 
 class UnitTestOfAboveFunctions(unittest.TestCase):
@@ -170,5 +181,19 @@ class UnitTestOfAboveFunctions(unittest.TestCase):
         self.assertEqual(c, list_ref(x, -1))
 
 
+def test_print_list():
+    a = list(1, 2)
+    b = list(3, 4)
+    c = list(a, b)
+    print_list(list())
+    print_list(list(1))
+    print_list(list(1, a))
+    print_list(list(1, 2, b))
+    print_list(list(1, a, b))
+    print_list(c)
+    print_list(list(c, b, list(a, b)))
+
+
 if __name__ == '__main__':
+    test_print_list()
     unittest.main()
