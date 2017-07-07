@@ -115,27 +115,27 @@ def list_ref(items, n):
     return list_ref_iter(items, n)
 
 
-def print_list(l):
+def list_to_str(l):
     def print_one_element(l):
         if callable(car(l)):
-            print_loop(car(l))
+            return list_to_str(car(l)) + ' '
         else:
-            print(car(l), end=" ")
+            return str(car(l)) + ' '
 
     def print_impl(l):
+        string = ''
         if not is_null(l):
             if length(l) > 0:
-                print_one_element(l)
+                string = print_one_element(l)
             if length(l) > 1:
-                print_impl(cdr(l))
+                string = string + print_impl(cdr(l))
+        return string
 
-    def print_loop(l):
-        print('(', end=" ")
-        print_impl(l)
-        print(')', end=" ")
+    return '( ' + print_impl(l) + ')'
 
-    print_loop(l)
-    print()
+
+def print_list(l):
+    print(list_to_str(l))
 
 
 class UnitTestOfAboveFunctions(unittest.TestCase):
@@ -180,20 +180,21 @@ class UnitTestOfAboveFunctions(unittest.TestCase):
         self.assertEqual(a, list_ref(x, 0))
         self.assertEqual(c, list_ref(x, -1))
 
-
-def test_print_list():
-    a = list(1, 2)
-    b = list(3, 4)
-    c = list(a, b)
-    print_list(list())
-    print_list(list(1))
-    print_list(list(1, a))
-    print_list(list(1, 2, b))
-    print_list(list(1, a, b))
-    print_list(c)
-    print_list(list(c, b, list(a, b)))
+    def test_case_7(self):
+        a = list()
+        b = list(1)
+        c = list(1, 2)
+        d = list(3, 4)
+        e = list(1, 2, d)
+        f = list(7, e, d)
+        self.assertEqual(list_to_str(a), '( )')
+        self.assertEqual(list_to_str(b), '( 1 )')
+        self.assertEqual(list_to_str(list(b)), '( ( 1 ) )')
+        self.assertEqual(list_to_str(c), '( 1 2 )')
+        self.assertEqual(list_to_str(e), '( 1 2 ( 3 4 ) )')
+        self.assertEqual(list_to_str(f),
+                         '( 7 ( 1 2 ( 3 4 ) ) ( 3 4 ) )')
 
 
 if __name__ == '__main__':
-    test_print_list()
     unittest.main()
