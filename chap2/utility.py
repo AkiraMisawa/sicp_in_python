@@ -116,22 +116,22 @@ def list_ref(items, n):
 
 
 def list_to_str(l):
-    def print_one_element(l):
+    def one_element_to_str(l):
         if callable(car(l)):
             return list_to_str(car(l)) + ' '
         else:
             return str(car(l)) + ' '
 
-    def print_impl(l):
+    def to_str_impl(l):
         string = ''
         if not is_null(l):
             if length(l) > 0:
-                string = print_one_element(l)
+                string = one_element_to_str(l)
             if length(l) > 1:
-                string = string + print_impl(cdr(l))
+                string = string + to_str_impl(cdr(l))
         return string
 
-    return '( ' + print_impl(l) + ')'
+    return '( ' + to_str_impl(l) + ')'
 
 
 def print_list(l):
