@@ -2,7 +2,7 @@
 """2.20"""
 
 import unittest
-from types import FunctionType
+
 
 # noinspection PyUnresolvedReferences
 from utility import cons, car, cdr, list, is_null, is_same_list
