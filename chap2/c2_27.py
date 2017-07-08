@@ -12,7 +12,7 @@ def deep_reverse(lst):
     def deep_reverse_of_length_one(lst):
         return deep_reverse_element(utility.car(lst))
 
-    utility.print_list(lst)
+    # utility.print_list(lst)
     if utility.is_null(lst):
         return None
     elif utility.length(lst) == 1:
@@ -45,9 +45,6 @@ class UnitTestOfAboveFunctions(unittest.TestCase):
         lst = utility.list(a, b)
         l_rev = deep_reverse(lst)
         l_rev_ans = utility.list(utility.list(4, 3), utility.list(2, 1))
-        utility.print_list(l_rev)
-        ll = utility.list(utility.list(1, 2), utility.list(3, 4))
-        self.assertTrue(utility.is_same_list(lst, ll))
         self.assertTrue(utility.is_same_list(l_rev, l_rev_ans))
 
 
