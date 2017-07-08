@@ -115,29 +115,24 @@ def list_ref(items, n):
     return list_ref_iter(items, n)
 
 
-def is_same_list(list1, list2):
-    """
-    :type list1: FunctionType | None
-    :type list2: FunctionType | None
-    :rtype: bool
-    """
-    def is_same_list_iter(x, y):
-        """
-        :type x: FunctionType | None
-        :type y: FunctionType | None
-        :rtype: bool
-        """
-        if is_null(x) and is_null(y):
-            return True
-        elif car(x) != car(y):
-            return False
+def is_same_list(lst1, lst2):
+    def is_same_element(x1, x2):
+        if callable(x1) == callable(x2):
+            if callable(x1):
+                return is_same_list(x1, x2)
+            else:
+                return x1 == x2
         else:
-            return is_same_list_iter(cdr(x), cdr(y))
+            return False
 
-    if length(list1) != length(list2):
+    if length(lst1) != length(lst2):
         return False
+    elif length(lst1) == 0:
+        return True
     else:
-        return is_same_list_iter(list1, list2)
+        is_same_car = is_same_element(car(lst1), car(lst2))
+        is_same_cdr = is_same_list(cdr(lst1), cdr(lst2))
+        return is_same_car and is_same_cdr
 
 
 def append(list1, list2):
@@ -165,27 +160,24 @@ def map(proc, items):
         return cons(proc(car(items)), map(proc, cdr(items)))
 
 
-def list_to_str(l):
-    def one_element_to_str(l):
-        if callable(car(l)):
-            return list_to_str(car(l)) + ' '
+def list_to_str(lst):
+    def one_element_to_str(x):
+        if callable(x):
+            return list_to_str(x) + ' '
         else:
-            return str(car(l)) + ' '
+            return str(x) + ' '
 
-    def to_str_impl(l):
-        string = ''
-        if not is_null(l):
-            if length(l) > 0:
-                string = one_element_to_str(l)
-            if length(l) > 1:
-                string = string + to_str_impl(cdr(l))
-        return string
+    def to_str_impl(lst):
+        if not is_null(lst):
+            return one_element_to_str(car(lst)) + to_str_impl(cdr(lst))
+        else:
+            return ''
 
-    return '( ' + to_str_impl(l) + ')'
+    return '( ' + to_str_impl(lst) + ')'
 
 
-def print_list(l):
-    print(list_to_str(l))
+def print_list(lst):
+    print(list_to_str(lst))
 
 
 class UnitTestOfAboveFunctions(unittest.TestCase):
@@ -233,7 +225,12 @@ class UnitTestOfAboveFunctions(unittest.TestCase):
     def test_case_7(self):
         list1 = list(1, 2, 3)
         list2 = list(1, 2, 3)
+        list12 = list(list1, list2)
+        list21 = list(list2, list1)
+        list3 = list(list(1, 2, 3), list(1, 2, 3))
         self.assertTrue(is_same_list(list1, list2))
+        self.assertTrue(is_same_list(list12, list21))
+        self.assertTrue(is_same_list(list12, list3))
 
     def test_case_8(self):
         x = list(1, 2, 3)

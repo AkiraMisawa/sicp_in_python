@@ -1,14 +1,14 @@
 import utility
 
 
-def last_pair(list):
-    if utility.is_null(list):
+def last_pair(lst):
+    if utility.is_null(lst):
         raise ValueError('empty list')
 
-    if utility.is_null(utility.cdr(list)):
-        return utility.car(list)
+    if utility.is_null(utility.cdr(lst)):
+        return utility.car(lst)
     else:
-        return last_pair(utility.cdr(list))
+        return last_pair(utility.cdr(lst))
 
 
 def main():
