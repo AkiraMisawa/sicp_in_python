@@ -115,10 +115,14 @@ def list_ref(items, n):
     return list_ref_iter(items, n)
 
 
+def is_list(x):
+    return callable(x)
+
+
 def is_same_list(lst1, lst2):
     def is_same_element(x1, x2):
-        if callable(x1) == callable(x2):
-            if callable(x1):
+        if is_list(x1) == is_list(x2):
+            if is_list(x1):
                 return is_same_list(x1, x2)
             else:
                 return x1 == x2
@@ -162,7 +166,7 @@ def map(proc, items):
 
 def list_to_str(lst):
     def one_element_to_str(x):
-        if callable(x):
+        if is_list(x):
             return list_to_str(x) + ' '
         else:
             return str(x) + ' '
