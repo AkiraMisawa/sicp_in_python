@@ -184,6 +184,10 @@ def print_list(lst):
     print(list_to_str(lst))
 
 
+def print_cons(lst):
+    print('( ' + str(car(lst)) + ' ' + str(cdr(lst)) + ' )')
+
+
 class UnitTestOfAboveFunctions(unittest.TestCase):
     def test_case_1(self):
         a = 1
