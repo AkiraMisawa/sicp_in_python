@@ -28,7 +28,7 @@ def mul_interval(x, y):
 
 
 def div_interval_new(x, y):
-    if lower_bound(x) * upper_bound(y) <= 0:
+    if lower_bound(y) * upper_bound(y) <= 0:
         return ValueError
     else:
         return mul_interval(x, make_interval(1.0 / upper_bound(y), 1.0 / lower_bound(y)))
