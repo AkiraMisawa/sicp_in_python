@@ -1,5 +1,5 @@
 import utility
-import c2_7 as interval
+import c2_07 as interval
 
 
 def isGreaterThanZero(x):
