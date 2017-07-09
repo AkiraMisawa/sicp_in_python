@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import utility
 
 
@@ -8,8 +9,16 @@ def gcd(a, b):
         return gcd(b, a % b)
 
 
-def make_rat(n, d):
-    return utility.cons(n, d)
+def cons(a, b):
+    return lambda f: f(a, b)
+
+
+def car(x):
+    return x(lambda a, b: a)
+
+
+def cdr(x):
+    return x(lambda a, b: b)
 
 
 def numer(x):

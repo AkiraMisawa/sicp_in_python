@@ -2,23 +2,13 @@
 """for utility functions"""
 
 import unittest
-from types import FunctionType
 
 
 def cons(a, b):
-    """
-    :type a: object
-    :type b: object
-    :rtype: FunctionType
-    """
     return lambda x: x(a, b)
 
 
 def car(x):
-    """
-    :type x: FunctionType | None
-    :rtype: object | FunctionType
-    """
     if x is None:
         return None
     else:
@@ -26,10 +16,6 @@ def car(x):
 
 
 def cdr(x):
-    """
-    :type x: FunctionType | None
-    :rtype: object | FunctionType
-    """
     if x is None:
         return None
     else:
@@ -162,6 +148,22 @@ def map(proc, items):
         return
     else:
         return cons(proc(car(items)), map(proc, cdr(items)))
+
+
+def make_interval(a, b):
+    return cons(a, b)
+
+
+def lower_bound(interval):
+    return car(interval)
+
+
+def upper_bound(interval):
+    return cdr(interval)
+
+
+def print_interval(interval):
+    print("[{0}, {1}]".format(lower_bound(interval), upper_bound(interval)))
 
 
 def list_to_str(lst):
