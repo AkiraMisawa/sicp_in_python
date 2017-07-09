@@ -1,4 +1,5 @@
 import c2_7
+import c2_08
 
 
 def width(interval):
@@ -17,8 +18,15 @@ def main():
         c2_7.add_interval(interval0, interval2),
         c2_7.add_interval(interval1, interval2)
     ]
+    sub_intervals = [
+        c2_08.sub_interval(interval0, interval1),
+        c2_08.sub_interval(interval0, interval2),
+        c2_08.sub_interval(interval1, interval2)
+    ]
     added_widths = [width(itvl) for itvl in added_intervals]
+    sub_widths = [width(itvl) for itvl in sub_intervals]
     print(added_widths)
+    print(sub_widths)
 
     multiplied_intervals = [
         c2_7.mul_interval(interval0, interval1),

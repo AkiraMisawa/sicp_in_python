@@ -1,4 +1,4 @@
-import utility
+import utility as utility
 
 
 def make_interval(a, b):
@@ -27,17 +27,16 @@ def mul_interval(x, y):
                          max([p1, p2, p3, p4]))
 
 
-def div_interval(x, y):
-    return mul_interval(x, make_interval(1.0 / upper_bound(y),
-                                         1.0 / lower_bound(y)))
+def div_interval_new(x, y):
+    if lower_bound(y) * upper_bound(y) <= 0:
+        raise ValueError
+    else:
+        return mul_interval(x, make_interval(1.0 / upper_bound(y), 1.0 / lower_bound(y)))
 
 
 def main():
     i1 = make_interval(2, 5)
     i2 = make_interval(4, 7)
-    utility.print_cons(add_interval(i1, i2))
-    utility.print_cons(mul_interval(i1, i2))
-    utility.print_cons(div_interval(i1, i2))
 
 
 if __name__ == '__main__':

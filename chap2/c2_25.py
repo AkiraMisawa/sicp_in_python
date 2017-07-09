@@ -25,7 +25,7 @@ def main():
                     car(cdr(
                         car(cdr(
                             car(cdr(lst2))))))))))))
-
+ 
     assert 7 == seven0
     assert 7 == seven1
     assert 7 == seven2
