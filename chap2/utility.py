@@ -144,10 +144,19 @@ def map(proc, items):
     :type items: FunctionType | None
     :rtype: FunctionType | None
     """
+    def map_to_element(proc, x):
+        if is_list(x):
+            return list(map(proc, x))
+        else:
+            return list(proc(x))
+
     if is_null(items):
-        return
+        return None
     else:
-        return cons(proc(car(items)), map(proc, cdr(items)))
+        #print('tree: {0}'.format(list_to_str(tree)))
+        lhs = map_to_element(proc, car(items))
+        rhs = map(proc, cdr(items))
+        return append(lhs, rhs)
 
 
 def make_interval(a, b):
@@ -188,6 +197,14 @@ def print_list(lst):
 
 def print_cons(lst):
     print('( ' + str(car(lst)) + ' ' + str(cdr(lst)) + ' )')
+
+
+def accumulate(op, initial, sequence):
+    if is_null(sequence):
+        return initial
+    else:
+        return op(car(sequence),
+                  accumulate(op, initial, cdr(sequence)))
 
 
 class UnitTestOfAboveFunctions(unittest.TestCase):
@@ -262,6 +279,16 @@ class UnitTestOfAboveFunctions(unittest.TestCase):
         self.assertEqual(list_to_str(e), '( 1 2 ( 3 4 ) )')
         self.assertEqual(list_to_str(f),
                          '( 7 ( 1 2 ( 3 4 ) ) ( 3 4 ) )')
+
+    def test_case10(self):
+        self.assertEqual(accumulate(lambda x, y: x + y, 0,
+                                    list(1, 2, 3, 4, 5)), 15)
+        self.assertEqual(accumulate(lambda x, y: x * y, 1,
+                                    list(1, 2, 3, 4, 5)), 120)
+        accumulate_cons = accumulate(
+            lambda x, y: cons(x, y), None, list(1, 2, 3, 4, 5))
+        self.assertTrue(is_same_list(
+            accumulate_cons, list(1, 2, 3, 4, 5)))
 
 
 if __name__ == '__main__':
