@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 """for utility functions"""
 
-import unittest
-
 
 def cons(a, b):
     return lambda x: x(a, b)
@@ -207,89 +205,9 @@ def accumulate(op, initial, sequence):
                   accumulate(op, initial, cdr(sequence)))
 
 
-class UnitTestOfAboveFunctions(unittest.TestCase):
-    def test_case_1(self):
-        a = 1
-        b = 2
-        x = cons(a, b)
-        self.assertEqual(a, car(x))
-        self.assertEqual(b, cdr(x))
-
-    def test_case_2(self):
-        x = list()
-        self.assertEqual(None, car(x))
-        self.assertEqual(None, cdr(x))
-
-    def test_case_3(self):
-        a = 1
-        x = list(a)
-        self.assertEqual(a, car(x))
-        self.assertEqual(None, cdr(x))
-
-    def test_case_4(self):
-        a = 1
-        b = 2
-        c = 3
-        x = list(a, b, c)
-        self.assertEqual(a, car(x))
-        self.assertEqual(b, car(cdr(x)))
-        self.assertEqual(c, car(cdr(cdr(x))))
-
-    def test_case_5(self):
-        x = list()
-        y = list(1, 2, 3)
-        self.assertEqual(0, length(x))
-        self.assertEqual(3, length(y))
-
-    def test_case_6(self):
-        a = 1
-        b = 2
-        c = 3
-        x = list(a, b, c)
-        self.assertEqual(a, list_ref(x, 0))
-        self.assertEqual(c, list_ref(x, -1))
-
-    def test_case_7(self):
-        list1 = list(1, 2, 3)
-        list2 = list(1, 2, 3)
-        list12 = list(list1, list2)
-        list21 = list(list2, list1)
-        list3 = list(list(1, 2, 3), list(1, 2, 3))
-        self.assertTrue(is_same_list(list1, list2))
-        self.assertTrue(is_same_list(list12, list21))
-        self.assertTrue(is_same_list(list12, list3))
-
-    def test_case_8(self):
-        x = list(1, 2, 3)
-        x_map = map(lambda i: 2 * i, x)
-        y = list(2, 4, 6)
-        self.assertTrue(is_same_list(x_map, y))
-
-    def test_case_9(self):
-        a = list()
-        b = list(1)
-        c = list(1, 2)
-        d = list(3, 4)
-        e = list(1, 2, d)
-        f = list(7, e, d)
-        self.assertEqual(list_to_str(a), '( )')
-        self.assertEqual(list_to_str(b), '( 1 )')
-        self.assertEqual(list_to_str(list(b)), '( ( 1 ) )')
-        self.assertEqual(list_to_str(c), '( 1 2 )')
-        self.assertEqual(list_to_str(e), '( 1 2 ( 3 4 ) )')
-        self.assertEqual(list_to_str(f),
-                         '( 7 ( 1 2 ( 3 4 ) ) ( 3 4 ) )')
-
-    def test_case10(self):
-        self.assertEqual(accumulate(lambda x, y: x + y, 0,
-                                    list(1, 2, 3, 4, 5)), 15)
-        self.assertEqual(accumulate(lambda x, y: x * y, 1,
-                                    list(1, 2, 3, 4, 5)), 120)
-        accumulate_cons = accumulate(
-            lambda x, y: cons(x, y), None, list(1, 2, 3, 4, 5))
-        self.assertTrue(is_same_list(
-            accumulate_cons, list(1, 2, 3, 4, 5)))
+def main():
+    print("Hello my beautiful world!!")
 
 
 if __name__ == '__main__':
-    unittest.main()
+    main()
