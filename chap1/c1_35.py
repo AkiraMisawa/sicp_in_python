@@ -1,4 +1,4 @@
-from math import cos
+# -*- coding: utf-8 -*-
 
 
 def tolerance():

@@ -3,6 +3,7 @@
 For utility functions.
 """
 
+
 def average(x, y):
     """
     :type x: float
@@ -74,3 +75,11 @@ def is_even(x):
     :rtype: bool
     """
     return x % 2 == 0
+
+
+def main():
+    print("Hello my beautiful world!!")
+
+
+if __name__ == '__main__':
+    main()

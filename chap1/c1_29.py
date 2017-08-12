@@ -43,7 +43,7 @@ def simple_integral(f, a, b, dx):
 
 def calculate_relative_error(expect, actual):
     return abs(expect - actual) / expect if expect != 0.0 else math.nan
-    
+
 
 def main():
     def cube(x): return x * x * x

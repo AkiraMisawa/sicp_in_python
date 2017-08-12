@@ -1,10 +1,7 @@
 import math
 
 
-EPS = 1e-12
-
-
-def is_good_enough(guess, x, eps=EPS):
+def is_good_enough(guess, x, eps=1e-12):
     if abs((guess - x) / x) < eps:
         return True
     else:
@@ -25,7 +22,12 @@ def sqrt(x):
 
 def fixed_point(f):
     return iterative_improve(f, is_good_enough, 1.0)
-    
 
-print("sqrt(2) ~", sqrt(2), "...")
-print("fixed point of cosx ~", fixed_point(math.cos), "...")
+
+def main():
+    print("sqrt(2) ~", sqrt(2), "...")
+    print("fixed point of cosx ~", fixed_point(math.cos), "...")
+
+
+if __name__ == '__main__':
+    main()

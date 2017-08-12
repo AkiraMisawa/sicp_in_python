@@ -4,7 +4,7 @@ import random
 
 def expmod(base, exp, m):
     def is_even(x): return x % 2 == 0
-    
+
     if exp == 0:
         return 1
     elif is_even(exp):
@@ -33,7 +33,7 @@ def miller_rabin_test(n):
     else:
         print("{} is NOT a prime number.".format(n))
         return
-    
+
 
 def main():
     carmichael_numbers = [561, 1105, 1729, 2465, 2821, 6601]

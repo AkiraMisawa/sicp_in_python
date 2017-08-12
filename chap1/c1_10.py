@@ -1,8 +1,4 @@
 # -*- coding: utf-8 -*-
-
-import unittest
-
-
 '''
 アッカーマン関数を計算する
 '''
@@ -45,30 +41,9 @@ def k(n):
     return 5 * n * n
 
 
-class AckermanFunctionTest(unittest.TestCase):
-    def test_case_A(self):
-        self.assertEqual(1024, A(1, 10))
-        self.assertEqual(65536, A(2, 4))
-        self.assertEqual(65536, A(3, 3))
-
-    def test_case_f(self):
-        self.assertEqual(2, f(1))
-        self.assertEqual(4, f(2))
-        self.assertEqual(6, f(3))
-        self.assertEqual(20, f(10))
-
-    def test_case_g(self):
-        self.assertEqual(2, g(1))
-        self.assertEqual(4, g(2))
-        self.assertEqual(256, g(8))
-        self.assertEqual(1024, g(10))
-
-    def test_case_h(self):
-        self.assertEqual(2, h(1))
-        self.assertEqual(4, h(2))
-        self.assertEqual(16, h(3))
-        self.assertEqual(65536, h(4))
+def main():
+    print("Hello my beautiful world!!")
 
 
 if __name__ == '__main__':
-    unittest.main()
+    main()
