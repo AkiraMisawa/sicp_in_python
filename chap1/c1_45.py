@@ -8,10 +8,10 @@ def compose(f, g):
 
 
 def repeate(f, n):
-     if n == 0:
+    if n == 0:
         return lambda x: x
-     else:
-         return compose(f, repeate(f, n - 1))
+    else:
+        return compose(f, repeate(f, n - 1))
 
 
 def average_damp(f):
@@ -34,13 +34,13 @@ def fixed_point(f, first_guess):
 
 def find_n_th_root(n, x, num_of_smoothing):
     num_of_smoothing_avg_damp = repeate(average_damp, num_of_smoothing)
-    proc = lambda y : x / (fast_expt2(y, n - 1))
-    return fixed_point(num_of_smoothing_avg_damp(proc), 1.0)
-    
+    return fixed_point(
+        num_of_smoothing_avg_damp(lambda y: x / (fast_expt2(y, n - 1))),
+        1.0)
+
 
 def main():
     print(find_n_th_root(2, 2, 1))
-    
 
 
 if __name__ == '__main__':

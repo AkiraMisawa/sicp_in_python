@@ -4,6 +4,7 @@ import sys
 
 sys.setrecursionlimit(1000000)
 
+
 def find_divisor(n, test_divisor):
     if test_divisor**2 > n:
         return n
@@ -42,7 +43,7 @@ def search_for_primes(a, b):
     '''
     aからbの範囲の連続した奇数について素数判定を行う
     '''
-    start =  a + 1 if a % 2 == 0 else a
+    start = a + 1 if a % 2 == 0 else a
     print("-----{0} to {1}-----".format(a, b))
     for n in range(start, b + 1, 2):
         timed_prime_test(n)
@@ -53,7 +54,7 @@ def main():
     search_for_primes(1000, 1020)
     search_for_primes(10000, 10050)
     search_for_primes(100000, 100050)
-    search_for_primes(1000000,1000050)
+    search_for_primes(1000000, 1000050)
 
 
 if __name__ == '__main__':

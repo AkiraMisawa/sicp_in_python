@@ -25,9 +25,23 @@ def filtered_accumulate(predicate, combiner, null_value, term, a, next, b):
     if predicate(a):
         return combiner(
             term(a),
-            filtered_accumulate(predicate, combiner, null_value, term, next(a), next, b))
+            filtered_accumulate(
+                predicate,
+                combiner,
+                null_value,
+                term,
+                next(a),
+                next,
+                b))
     else:
-        return filtered_accumulate(predicate, combiner, null_value, term, next(a), next, b)
+        return filtered_accumulate(
+            predicate,
+            combiner,
+            null_value,
+            term,
+            next(a),
+            next,
+            b)
 
 
 def prime_squared_sum(a, b):
@@ -59,16 +73,6 @@ def main():
     print(prime_squared_sum(1, 10))
     print(coprime_product(10))
     print(c1.is_prime(1))
-    # print(sum(
-    #     lambda x: x,
-    #     1,
-    #     lambda i: i + 1,
-    #     10))
-    # print(prod(
-    #     lambda x: x,
-    #     1,
-    #     lambda i: i + 1,
-    #     10))
 
 
 if __name__ == '__main__':

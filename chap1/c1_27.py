@@ -23,7 +23,7 @@ def carmichael_test(n):
     else:
         print("{} is NOT a carmichael number.".format(n))
     return
-    
+
 
 def main():
     carmichael_numbers = [561, 1105, 1729, 2465, 2821, 6601]

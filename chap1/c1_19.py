@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import unittest
 
 
 def fib(n):
@@ -26,22 +25,9 @@ def fib(n):
     return fib_logscale_iter(1, 0, 0, 1, n)
 
 
-class FibLogScaleTest(unittest.TestCase):
-    def test_case1(self):
-        self.assertEqual(0, fib(0))
-
-    def test_case2(self):
-        self.assertEqual(1, fib(2))
-
-    def test_case3(self):
-        self.assertEqual(8, fib(6))
-
-    def test_case4(self):
-        self.assertEqual(55, fib(10))
-
-    def test_case5(self):
-        self.assertEqual(4181, fib(19))
+def main():
+    print("Hello my beautiful world!!")
 
 
 if __name__ == '__main__':
-    unittest.main()
+    main()

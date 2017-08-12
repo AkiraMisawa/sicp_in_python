@@ -50,7 +50,6 @@ def start_prime_test(n, start_time, prime_tester):
 def timed_prime_test(n, prime_tester):
     print("\n{}".format(n), end='')
     start_prime_test(n, time.time(), prime_tester)
-    #print("")
     return
 
 

@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-import unittest
-import math
 
 
 def fast_expt2(b, n):
@@ -22,16 +20,9 @@ def fast_expt2(b, n):
     return fast_expt_iter(1, b, n)
 
 
-class ExponentialTest2(unittest.TestCase):
-    def test_case0(self):
-        self.assertEqual(math.pow(4, 0), fast_expt2(4, 0))
-
-    def test_case1(self):
-        self.assertEqual(math.pow(2, 10), fast_expt2(2, 10))
-
-    def test_case2(self):
-        self.assertEqual(math.pow(2, 5), fast_expt2(3, 5))
+def main():
+    print("Hello my beautiful world!!")
 
 
 if __name__ == '__main__':
-    unittest.main()
+    main()

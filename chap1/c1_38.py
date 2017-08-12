@@ -22,7 +22,12 @@ def cont_frac(n, d, k):
     return rec(1)
 
 
-k = 100
-print("k =", k)
-print("e =", 2.0 + cont_frac(n, d, k), "...")
-print("e - e(k) =", math.e - 2.0 - cont_frac(n, d, k))
+def main():
+    k = 100
+    print("k =", k)
+    print("e =", 2.0 + cont_frac(n, d, k), "...")
+    print("e - e(k) =", math.e - 2.0 - cont_frac(n, d, k))
+
+
+if __name__ == '__main__':
+    main()
