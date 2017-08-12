@@ -1,4 +1,5 @@
 # SICP in Python
+[![Build Status](https://travis-ci.org/AkiraMisawa/sicp_in_python.svg?branch=master)](https://travis-ci.org/AkiraMisawa/sicp_in_python)
 ## Description
 - To read [SICP](http://sicp.iijlab.net/fulltext/xcont.html)
 - To solve problems
